@@ -90,6 +90,39 @@ void tm1637_display_number(int number)
     }
 }
 
+void tm1637_display_clock(int time) //Displays a 4 digit number with the colon enabled to function as a clock
+{
+    if (time < 0 || time > 2400)
+          return;
+
+      uint8_t digits[4] = {0};
+
+      // Extract digits and store them in the array from most significant digit to least significant digit
+      for (int i = 0; i < 4; i++)
+      {
+          digits[3 - i] = time % 10;
+          time /= 10;
+      }
+
+      tm1637_start();
+      tm1637_write_byte(TM1637_CMD_DATA_FIXED);
+      tm1637_stop();
+
+      for (int i = 0; i < 4; i++)
+      {
+          tm1637_start();
+          if (i == 0)
+          {
+            tm1637_write_byte(TM1637_CMD_ADDR_START);
+            tm1637_write_byte(segment_patterns[digits[i]] | 0x80); // bitmask to enable the colon
+          } else {
+            tm1637_write_byte(TM1637_CMD_ADDR_START + i);
+            tm1637_write_byte(segment_patterns[digits[i]]);
+          }
+          tm1637_stop();
+      }
+}
+
 void tm1637_clear_display(void)
 {
     tm1637_start();
