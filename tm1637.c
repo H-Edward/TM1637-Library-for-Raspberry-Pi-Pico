@@ -90,7 +90,7 @@ void tm1637_display_number(int number)
     }
 }
 
-void tm1637_display_number_without_leading_zero(int number)
+void tm1637_display_number_without_leading_zero(int number) // Displays a 4 digit number without leading zeros, i.e. 12 instead of 0012
 {
     if (number < 0 || number > 9999)
         return;
@@ -127,7 +127,7 @@ void tm1637_display_number_without_leading_zero(int number)
     }
 }
 
-void tm1637_display_clock(int time) //Displays a 4 digit number with the colon enabled to function as a clock
+void tm1637_display_clock(int time) // Displays a 4 digit number with the colon enabled to function as a clock
 {
     if (time < 0 || time > 2400)
           return;
