@@ -90,7 +90,7 @@ void tm1637_display_number(int number)
     }
 }
 
-void tm1637_display_number_without_leading_zero(int number) // Displays a 4 digit number without leading zeros, i.e. 12 instead of 0012
+void tm1637_display_number_without_leading_zero(int number) // Displays a number without leading zeros, i.e. 12 instead of 0012
 {
     if (number < 0 || number > 9999)
         return;
